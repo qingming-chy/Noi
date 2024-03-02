@@ -1,7 +1,7 @@
 {
   "name": "Noi Mode",
-  "version": "0.1.5",
-  "sync": "https://github.com/lencx/noi/blob/main/configs/noi.mode.json",
+  "version": "0.1.2",
+  "sync": "https://github.com/lencx/noi/blob/main/configs/noi.mode.zh.json",
   "modes": [
     {
       "id": "noi@ai",
@@ -10,22 +10,16 @@
       "text": "AI"
     },
     {
+      "id": "noi@aiCN",
+      "parent": 0,
+      "dir": true,
+      "text": "AI（内陆版）"
+    },
+    {
       "id": "noi@dev",
       "parent": 0,
       "dir": true,
       "text": "Dev"
-    },
-    {
-      "id": "noi@community",
-      "parent": 0,
-      "dir": true,
-      "text": "Community"
-    },
-    {
-      "id": "noi@design",
-      "parent": 0,
-      "dir": true,
-      "text": "Design"
     },
     {
       "id": "noi:chatgpt",
@@ -88,6 +82,48 @@
       "url": "https://you.com"
     },
     {
+      "id": "noi:cozeCN",
+      "parent": "noi@aiCN",
+      "text": "扣子",
+      "url": "https://www.coze.cn/home"
+    },
+    {
+      "id": "noi:doubao",
+      "parent": "noi@aiCN",
+      "text": "豆包",
+      "url": "https://www.doubao.com"
+    },
+    {
+      "id": "noi:chatglm",
+      "parent": "noi@aiCN",
+      "text": "智谱清言",
+      "url": "https://chatglm.cn"
+    },
+    {
+      "id": "noi:tongyiqianwen",
+      "parent": "noi@aiCN",
+      "text": "通义千问",
+      "url": "https://tongyi.aliyun.com/qianwen"
+    },
+    {
+      "id": "noi:yiyan",
+      "parent": "noi@aiCN",
+      "text": "文心一言",
+      "url": "https://yiyan.baidu.com"
+    },
+    {
+      "id": "noi:xinghuo",
+      "parent": "noi@aiCN",
+      "text": "讯飞星火",
+      "url": "https://xinghuo.xfyun.cn"
+    },
+    {
+      "id": "noi:kimi",
+      "parent": "noi@aiCN",
+      "text": "Kimi",
+      "url": "https://kimi.moonshot.cn"
+    },
+    {
       "id": "noi:github",
       "parent": "noi@dev",
       "text": "GitHub",
@@ -110,36 +146,6 @@
       "parent": "noi@dev",
       "text": "VS Code",
       "url": "https://vscode.dev"
-    },
-    {
-      "id": "noi:x",
-      "parent": "noi@community",
-      "text": "X",
-      "url": "https://twitter.com"
-    },
-    {
-      "id": "noi:discord",
-      "parent": "noi@community",
-      "text": "Discord",
-      "url": "https://discord.com"
-    },
-    {
-      "id": "noi:hackernews",
-      "parent": "noi@community",
-      "text": "Hacker News",
-      "url": "https://news.ycombinator.com"
-    },
-    {
-      "id": "noi:figma",
-      "parent": "noi@design",
-      "text": "Figma",
-      "url": "https://www.figma.com"
-    },
-    {
-      "id": "noi:dribbble",
-      "parent": "noi@design",
-      "text": "Dribbble",
-      "url": "https://dribbble.com"
     }
   ]
 }

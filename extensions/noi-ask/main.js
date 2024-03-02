@@ -19,6 +19,13 @@ class NoiAsk {
     }
   }
 
+  static autoFocus() {
+    const inputElement = document.querySelector('textarea');
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }
+
   static simulateUserInput(element, text) {
     const inputEvent = new InputEvent('input', {
       bubbles: true,
@@ -69,6 +76,10 @@ class ClaudeAsk extends NoiAsk {
     }
   }
 
+  static autoFocus() {
+    this.sync('');
+  }
+
   static submit() {
     // subsequent screens use this
     let btn = document.querySelector('button[aria-label*="Send Message"]');
@@ -82,9 +93,9 @@ class ClaudeAsk extends NoiAsk {
   }
 }
 
-class BardAsk extends NoiAsk {
-  static name = 'Bard';
-  static url = 'https://bard.google.com';
+class GeminiAsk extends NoiAsk {
+  static name = 'Gemini';
+  static url = 'https://gemini.google.com';
 
   static sync(message) {
     const inputElement = document.querySelector('.ql-editor.textarea');
@@ -97,8 +108,15 @@ class BardAsk extends NoiAsk {
     }
   }
 
+  static autoFocus() {
+    const inputElement = document.querySelector('.ql-editor.textarea');
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }
+
   static submit() {
-    const btn = document.querySelector('button[aria-label*="Send message"]');
+    const btn = document.querySelector('button[aria-label*="Send message"]') || document.querySelector('button.send-button');
     if (btn) {
       btn.setAttribute('aria-disabled', 'false'); // doesn't work alone
       btn.focus();
@@ -117,6 +135,13 @@ class HuggingChatAsk extends NoiAsk {
       const inputEvent = new Event('input', { bubbles: true });
       inputElement.value = message;
       inputElement.dispatchEvent(inputEvent);
+    }
+  }
+
+  static autoFocus() {
+    var inputElement = document.querySelector('textarea[placeholder*="Ask anything"]');
+    if (inputElement) {
+      inputElement.focus();
     }
   }
 
@@ -155,6 +180,16 @@ class CopilotAsk extends NoiAsk {
     const inputElement = textInputDOM ? textInputDOM.shadowRoot.querySelector('#searchbox') : inputDOM.shadowRoot.querySelector('#searchbox');
     if (inputElement) {
       this.simulateUserInput(inputElement, message);
+    }
+  }
+
+  static autoFocus() {
+    const serpDOM = document.querySelector('.cib-serp-main');
+    const inputDOM = serpDOM.shadowRoot.querySelector('#cib-action-bar-main');
+    const textInputDOM = inputDOM.shadowRoot.querySelector('cib-text-input');
+    const inputElement = textInputDOM ? textInputDOM.shadowRoot.querySelector('#searchbox') : inputDOM.shadowRoot.querySelector('#searchbox');
+    if (inputElement) {
+      inputElement.focus();
     }
   }
 
@@ -214,7 +249,7 @@ class CozeAsk extends NoiAsk {
 }
 
 class YouAsk extends NoiAsk {
-  static name = 'YouAsk';
+  static name = 'YOU';
   static url = 'https://you.com';
 
   static submit() {
@@ -223,15 +258,71 @@ class YouAsk extends NoiAsk {
   }
 }
 
+class CozeCNAsk extends NoiAsk {
+  static name = 'Coze';
+  static url = 'https://www.coze.cn/home';
+
+  static submit() {
+    const inputElement = document.querySelector('textarea');
+    if (inputElement) {
+      const nextElement = inputElement.nextElementSibling;
+      if (nextElement) {
+        const btn = nextElement.querySelector('button');
+        if (btn) btn.click();
+      }
+    }
+  }
+}
+
+class ChatGMLAsk extends NoiAsk {
+  static name = 'ChatGLM'; // 智谱清言
+  static url = 'https://chatglm.cn';
+
+  static submit() {
+    const btn = document.querySelector('#search-input-box .enter img');
+    if (btn) btn.click();
+  }
+}
+
+class DoubaoAsk extends NoiAsk {
+  static name = 'Doubao'; // 豆包
+  static url = 'https://www.doubao.com';
+
+  static submit() {
+    const btn = document.querySelector('#flow-end-msg-send');
+    if (btn) btn.click();
+  }
+}
+
+class TongyiAsk extends NoiAsk {
+  static name = 'TongYi'; // 通义千问
+  static url = 'https://tongyi.aliyun.com/qianwen';
+
+  static submit() {
+    const inputElement = document.querySelector('textarea');
+    if (inputElement) {
+      const nextElement = inputElement.nextElementSibling;
+      if (nextElement) {
+        const btn = nextElement.querySelector('div[class^="chatBtn"]');
+        if (btn) btn.click();
+      }
+    }
+  }
+}
+
 window.NoiAsk = {
   OpenAIAsk,
   PoeAsk,
   ClaudeAsk,
-  BardAsk,
+  GeminiAsk,
   HuggingChatAsk,
   PerplexityAsk,
   CopilotAsk,
   PiAsk,
   CozeAsk,
   YouAsk,
+  CozeCNAsk,
+  DoubaoAsk,
+  ChatGMLAsk,
+  TongyiAsk,
 };
